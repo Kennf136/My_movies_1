@@ -1,7 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+import SearchBar from './SearchBar';
 
+const Background=styled.div`
+background-image: url(https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3694576331e527eb0933b269a6fc40fb&auto=format&fit=crop&w=500&q=60);
+background-size:cover;
+height:auto
+`
 
+const Forground=styled.div`
+height:100vh;
+
+`
+const Button= styled.button`
+height:20px;
+width:45px;
+`
+
+const Title=styled.div`
+font-family: 'Monoton', cursive;
+color:white;
+font-size :50px;
+`
 class MoviesList extends Component {
    
     state={
@@ -28,23 +50,37 @@ class MoviesList extends Component {
         const allMovies= movies.map((oneMovie,i) =>{
             console.log("inside my map",oneMovie)
             return(
-                <div>
-                
-                    <h1> Title: {oneMovie.title} </h1>
+                 
+                <Forground>
+              
+                    <Title> Title: {oneMovie.title} </Title>
                     <h3> Genre: {oneMovie.genre}</h3>
                     <h3> Year: {oneMovie.year} </h3>
-                    <h3>Synopis: {oneMovie.synopis} </h3>
-                </div>
+                   <h3>Synopis: {oneMovie.synopis} </h3>
+                   <div> 
+                        {/* <Link key={i} to={`/movies/${oneMovie._id}`}>        
+                  <button>stuff </button>
+                   </Link> */}
+                   
+                   </div>
+                </Forground>
+              
             )
         })
         return (
-            <div>
+            <Background>
+              <nav>  <SearchBar/>  </nav>
+                
                 {allMovies}
               
-            </div>
+            </Background>
         );
     }
 }
 
 export default MoviesList;
+
+
+
+
 
